@@ -6,15 +6,11 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  list-style: none;
 }
-:root {
-  --color: #FFFFFF;
-  --color-alt: #D3D3D3;
-  --title-color: #556B2F;
-  --main-transition: 0.3s;
-  --section-background: #008000;
-  --background2: #90EE90;
-  --btn-bg-color: #006400;
+*::selection{
+  color: #556b2f;
+  background-color: #fff;
 }
 html {
   scroll-behavior: smooth;
@@ -26,59 +22,89 @@ a {
   text-decoration: none;
 }
 ul {
-  list-style: none;
   margin: 0;
   padding: 0;
 }
-.container {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.main-title {
-  text-transform: uppercase;
-  margin: 0 auto 80px;
-  border: 2px solid black;
-  padding: 10px 20px;
-  font-size: 30px;
-  width: fit-content;
-  position: relative;
-  z-index: 1;
-  transition: var(--main-transition);
-  color: var(--title-color);
-}
-.main-title::before,
-.main-title::after {
-  content: "";
-  width: 12px;
-  height: 12px;
-  background-color: var(--title-color);
+/* laod page Animatoin */
+.page-bg {
   position: absolute;
-  border-radius: 50%;
-  top: 50%; 
-  transform: translateY(-50%);
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: #fff center;
+  filter: blur(0px);
+  z-index: 10;
 }
-.main-title::before {
-  left: -30px;
+.preloader {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: radial-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8));
+  z-index: 10;
 }
-.main-title::after {
-  right: -30px;
+.preloader > .preloader-box {
+  position: absolute;
+  width: 345px;
+  height: 30px;
+  top: 50%;
+  left: 50%;
+  margin: -15px 0 0 -150px;
+  perspective: 200px;
 }
-.main-title:hover::before {
-  z-index: -1;
-  animation: left-move 0.5s linear forwards;
+.preloader .preloader-box > span {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: #ccc;
+  float: left;
+  text-align: center;
+  line-height: 30px;
+  font-family: Verdana;
+  font-size: 20px;
+  color: #fff;
 }
-.main-title:hover::after {
-  z-index: -1;
-  animation: right-move 0.5s linear forwards;
+.preloader .preloader-box > span:nth-child(1) {
+  background: #3366ff;
+  margin-right: 15px;
+  animation: movement 600ms ease 0ms infinite alternate;
 }
-.main-title:hover {
-  color: white;
-  border: 2px solid white;
-  transition-delay: 0.5s;
+.preloader .preloader-box > span:nth-child(2) {
+  background: #3366ff;
+  margin-right: 15px;
+  animation: movement 600ms ease 75ms infinite alternate;
 }
-
+.preloader .preloader-box > span:nth-child(3) {
+  background: #3366ff;
+  margin-right: 15px;
+  animation: movement 600ms ease 150ms infinite alternate;
+}
+.preloader .preloader-box > span:nth-child(4) {
+  background: #3366ff;
+  margin-right: 15px;
+  animation: movement 600ms ease 225ms infinite alternate;
+}
+.preloader .preloader-box > span:nth-child(5) {
+  background: #3366ff;
+  margin-right: 15px;
+  animation: movement 600ms ease 300ms infinite alternate;
+}
+.preloader .preloader-box > span:nth-child(6) {
+  background: #3366ff;
+  margin-right: 15px;
+  animation: movement 600ms ease 375ms infinite alternate;
+}
+.preloader .preloader-box > span:nth-child(7) {
+  background: #3366ff;
+  margin-right: 15px;
+  animation: movement 600ms ease 450ms infinite alternate;
+}
+.preloader .preloader-box > span:nth-child(8) {
+  background: #3366ff;
+  animation: movement 600ms ease 525ms infinite alternate;
+}
 /* Start header */
 header {
   width: 100%;
@@ -88,6 +114,8 @@ header {
   justify-content: space-between;
   padding: 5px;
   background-color: #43ff43;
+  position: fixed;
+  z-index: 9999999;
   h1 > a {
     color: #556b2f;
   }
@@ -113,10 +141,11 @@ header > nav > li {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #09ee09;
+  background-color: #006400;
+  border-bottom: 2px dashed #09ee09;
   div {
     & h1 {
-      color: #556b2f;
+      color: #a3df3c;
     }
     & h4 {
       position: relative;
@@ -126,30 +155,32 @@ header > nav > li {
   }
 }
 /* End mainSec */
-/* Animations */
-@keyframes left-move {
-  50% {
-    left: 0;
-    width: 12px;
-    height: 12px;
+
+/* Start About sec */
+#about {
+  width: 100%;
+  height: 40vh;
+  background-color: #006400;
+  .title {
+    color: #a3df3c;
+    margin-bottom: 150px;
   }
-  100% {
-    left: 1px;
-    border-radius: 0;
-    width: 50%;
-    height: 100%;
+  h5 {
+    color: #fff;
+    letter-spacing: 9px;
   }
 }
-@keyframes right-move {
-  50% {
-    right: 0;
-    width: 12px;
-    height: 12px;
+/* End About sec */
+
+/* Animations */
+@keyframes movement {
+  from {
+    transform: scale(1) translateY(0px) rotateX(0deg);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   }
-  100% {
-    right: 0;
-    border-radius: 0;
-    width: 50%;
-    height: 100%;
+  to {
+    transform: scale(1.5) translateY(-25px) rotateX(45deg);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.4);
+    background: #3399ff;
   }
 }
