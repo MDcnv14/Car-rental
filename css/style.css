@@ -34,7 +34,7 @@ ul {
   bottom: -20px;
   background: #fff center;
   filter: blur(0px);
-  z-index: 10;
+  z-index: 99999999;
 }
 .preloader {
   position: absolute;
