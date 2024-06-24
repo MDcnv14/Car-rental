@@ -7,10 +7,11 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   list-style: none;
+  transition: 0.3s;
 }
-*::selection{
+*::selection {
   color: #556b2f;
-  background-color: #fff;
+  background-color: #f1eded;
 }
 html {
   scroll-behavior: smooth;
@@ -25,7 +26,27 @@ ul {
   margin: 0;
   padding: 0;
 }
+section {
+  border-bottom: 2px dashed #09ee09;
+  background-color: #006400;
+}
+.title {
+  color: #a3df3c;
+  padding-top: 50px;
+  margin-bottom: 75px;
+  font-weight: bold;
+}
+i {
+  color: #556b2f;
+}
+/* ::-webkit-scrollbar {
+  width: 10px;
+} */
 /* laod page Animatoin */
+#animation {
+  z-index: 99999999;
+  position: fixed;
+}
 .page-bg {
   position: absolute;
   top: -20px;
@@ -34,7 +55,6 @@ ul {
   bottom: -20px;
   background: #fff center;
   filter: blur(0px);
-  z-index: 99999999;
 }
 .preloader {
   position: absolute;
@@ -67,42 +87,42 @@ ul {
   color: #fff;
 }
 .preloader .preloader-box > span:nth-child(1) {
-  background: #3366ff;
+  background: #556b2f;
   margin-right: 15px;
   animation: movement 600ms ease 0ms infinite alternate;
 }
 .preloader .preloader-box > span:nth-child(2) {
-  background: #3366ff;
+  background: #556b2f;
   margin-right: 15px;
   animation: movement 600ms ease 75ms infinite alternate;
 }
 .preloader .preloader-box > span:nth-child(3) {
-  background: #3366ff;
+  background: #556b2f;
   margin-right: 15px;
   animation: movement 600ms ease 150ms infinite alternate;
 }
 .preloader .preloader-box > span:nth-child(4) {
-  background: #3366ff;
+  background: #556b2f;
   margin-right: 15px;
   animation: movement 600ms ease 225ms infinite alternate;
 }
 .preloader .preloader-box > span:nth-child(5) {
-  background: #3366ff;
+  background: #556b2f;
   margin-right: 15px;
   animation: movement 600ms ease 300ms infinite alternate;
 }
 .preloader .preloader-box > span:nth-child(6) {
-  background: #3366ff;
+  background: #556b2f;
   margin-right: 15px;
   animation: movement 600ms ease 375ms infinite alternate;
 }
 .preloader .preloader-box > span:nth-child(7) {
-  background: #3366ff;
+  background: #556b2f;
   margin-right: 15px;
   animation: movement 600ms ease 450ms infinite alternate;
 }
 .preloader .preloader-box > span:nth-child(8) {
-  background: #3366ff;
+  background: #556b2f;
   animation: movement 600ms ease 525ms infinite alternate;
 }
 /* Start header */
@@ -119,6 +139,9 @@ header {
   h1 > a {
     color: #556b2f;
   }
+  h1 > a:hover{
+    color: #a3df3c;
+  }
 }
 header > nav {
   display: flex;
@@ -131,6 +154,10 @@ header > nav > li {
     color: #556b2f;
     font-size: 20px;
   }
+  a:hover,
+  a i:hover {
+    color: #a3df3c;
+  }
 }
 /* End header */
 
@@ -141,9 +168,8 @@ header > nav > li {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #006400;
-  border-bottom: 2px dashed #09ee09;
   div {
+    margin-right: 150px;
     & h1 {
       color: #a3df3c;
     }
@@ -153,24 +179,91 @@ header > nav > li {
       color: #ffffff;
     }
   }
+  .icons {
+    font-size: 35px;
+    display: block;
+    & a {
+      color: #556b2f;
+      margin-right: 35px;
+      & i:hover {
+        color: #a3df3c;
+      }
+    }
+  }
 }
 /* End mainSec */
 
 /* Start About sec */
 #about {
   width: 100%;
-  height: 40vh;
-  background-color: #006400;
-  .title {
-    color: #a3df3c;
-    margin-bottom: 150px;
-  }
+  min-height: 40vh;
   h5 {
     color: #fff;
     letter-spacing: 9px;
   }
 }
 /* End About sec */
+
+/* Start services sec */
+#services {
+  position: relative;
+  min-height: 200vh;
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 40px;
+  }
+  .box {
+    background-color: white;
+    padding: 30px 15px;
+    text-align: center;
+    opacity: 0.7;
+    position: relative;
+    border-radius: 10px;
+    background-color: #aeffae;
+    & .num {
+      display: block;
+      font-size: 50px;
+      font-weight: 500;
+      margin: 10px auto;
+    }
+    & .text {
+      color: #556b2f;
+      font-style: italic;
+      font-size: 30px;
+      font-weight: 450;
+    }
+  }
+  .box:hover {
+    opacity: 1;
+  }
+}
+.box::before,
+.box::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  background-color: #35a709;
+  transition: 0.5s;
+  height: 0;
+}
+.box::before {
+  top: 0;
+  right: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.box::after {
+  bottom: 0;
+  left: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.box:hover:before,
+.box:hover:after {
+  height: 100%;
+}
+/* End services sec */
 
 /* Animations */
 @keyframes movement {
